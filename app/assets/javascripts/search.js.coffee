@@ -5,7 +5,7 @@
 
 
 $ ->
-	$('.play-btn').live 'click', ->
+	$(document).on 'click', '.play-btn', ->
 		row = $(this).closest('li')
 		OnTheSpot.Queue.add({name: row.text(), uri: row.data('uri')})
 	$('#controls a').tooltip(placement: 'bottom')
@@ -63,7 +63,7 @@ processTracks = (raw_tracks) ->
 	tracks = _.map tracks, (track) ->
 		$("<li></li>")
 		.append($('<span></span>').addClass('track').text(track.name))
-		.append($('<span></span>').addClass('artist').text(" - #{track.artist}")) 
+		.append($('<span></span>').addClass('artist').text(" - #{track.artist}"))
 		.append($('<span></span>').addClass('album').text(" (#{track.album})"))
 		.append($('<span></span>').addClass('duration').text(" - #{track.duration}"))
 		.data('popularity', track.popularity)
@@ -83,7 +83,7 @@ processTracks = (raw_tracks) ->
 
 	return if collection.length == 0
 	$('#tracks').empty()
-	_.each collection, (item) -> 
+	_.each collection, (item) ->
 		$('#tracks').append(item)
 
 
